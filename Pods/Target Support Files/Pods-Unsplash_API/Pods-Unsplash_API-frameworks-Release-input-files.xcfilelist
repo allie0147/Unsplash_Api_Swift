@@ -1,3 +1,4 @@
 ${PODS_ROOT}/Target Support Files/Pods-Unsplash_API/Pods-Unsplash_API-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework
 ${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework

@@ -8,5 +8,6 @@ target 'Unsplash_API' do
   # Pods for Unsplash_API
   pod 'Toast-Swift', '~> 5.0.1'
   pod 'Alamofire', '~> 5.2'
+  pod 'SwiftyJSON', '~> 4.0'
 
 end

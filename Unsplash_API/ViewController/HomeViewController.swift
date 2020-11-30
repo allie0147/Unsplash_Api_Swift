@@ -124,21 +124,30 @@ class HomeViewController: BaseViewController, UISearchBarDelegate, UIGestureReco
 
         switch searchFilterSegment.selectedSegmentIndex {
         case 0:
-            urlToCall = MySearchRouter.searchPhotos(term: userInput)
+//            urlToCall = MySearchRouter.searchPhotos(term: userInput)
+            MyAlamofireManager.shared.getPhotos(searchTerm: userInput,
+                completion: { result in
+                    switch result {
+                    case .success(let fetchedPhotos):
+                        print("HomeVC - getPhotos.success - fetchedPhotos.count : \(fetchedPhotos.count)")
+                    case .failure(let error):
+                        print("HomeVc - getPhotos.failure - error : \(error.rawValue)")
+                    }
+                })
         case 1:
             urlToCall = MySearchRouter.searchUsers(term: userInput)
         default:
             print("default")
         }
-        if let urlConvertible = urlToCall {
-            MyAlamofireManager
-                .shared
-                .session
-                .request(urlConvertible)
-                .validate(statusCode: 200..<401)
-                .responseJSON(completionHandler: { response in
-//                    debugPrint(response)
-                }) }
+//        if let urlConvertible = urlToCall {
+//            MyAlamofireManager
+//                .shared
+//                .session
+//                .request(urlConvertible)
+//                .validate(statusCode: 200..<401)
+//                .responseJSON(completionHandler: { response in
+////                    debugPrint(response)
+//                }) }
 //        pushVC() // 화면 이동
     }
 

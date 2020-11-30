@@ -22,6 +22,8 @@
 		24870C882574AFCF00A8565B /* MyLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24870C872574AFCF00A8565B /* MyLogger.swift */; };
 		24870C8B2574B0C800A8565B /* MyApiStatusLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24870C8A2574B0C800A8565B /* MyApiStatusLogger.swift */; };
 		24870C8F2574B1D700A8565B /* MySearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24870C8E2574B1D700A8565B /* MySearchRouter.swift */; };
+		24870C932574C5EE00A8565B /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24870C922574C5EE00A8565B /* Photo.swift */; };
+		24870C962574C62D00A8565B /* MyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24870C952574C62D00A8565B /* MyError.swift */; };
 		6C708E799CA704EF1F30F962 /* Pods_Unsplash_API.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D68BBB418E236E883A1FEF81 /* Pods_Unsplash_API.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +46,8 @@
 		24870C872574AFCF00A8565B /* MyLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLogger.swift; sourceTree = "<group>"; };
 		24870C8A2574B0C800A8565B /* MyApiStatusLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyApiStatusLogger.swift; sourceTree = "<group>"; };
 		24870C8E2574B1D700A8565B /* MySearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySearchRouter.swift; sourceTree = "<group>"; };
+		24870C922574C5EE00A8565B /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		24870C952574C62D00A8565B /* MyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyError.swift; sourceTree = "<group>"; };
 		A78A02CB952EACF8AFCA6C4B /* Pods-Unsplash_API.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unsplash_API.release.xcconfig"; path = "Target Support Files/Pods-Unsplash_API/Pods-Unsplash_API.release.xcconfig"; sourceTree = "<group>"; };
 		D68BBB418E236E883A1FEF81 /* Pods_Unsplash_API.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Unsplash_API.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -81,6 +85,7 @@
 		245491A32573D8720019FCAE /* Unsplash_API */ = {
 			isa = PBXGroup;
 			children = (
+				24870C912574C5DA00A8565B /* Model */,
 				24870C7C2574ABCA00A8565B /* API */,
 				24870C6C257483F500A8565B /* Utils */,
 				245491A42573D8720019FCAE /* AppDelegate.swift */,
@@ -109,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				24870C6D2574840D00A8565B /* Constants.swift */,
+				24870C952574C62D00A8565B /* MyError.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -123,6 +129,14 @@
 				24870C872574AFCF00A8565B /* MyLogger.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		24870C912574C5DA00A8565B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				24870C922574C5EE00A8565B /* Photo.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		E5051532FF087BFC50D9A1B8 /* Frameworks */ = {
@@ -262,7 +276,9 @@
 				24870C852574ACA400A8565B /* BaseInterceptor.swift in Sources */,
 				24870C8F2574B1D700A8565B /* MySearchRouter.swift in Sources */,
 				245491A92573D8720019FCAE /* HomeViewController.swift in Sources */,
+				24870C932574C5EE00A8565B /* Photo.swift in Sources */,
 				245491A52573D8720019FCAE /* AppDelegate.swift in Sources */,
+				24870C962574C62D00A8565B /* MyError.swift in Sources */,
 				24870C7E2574ABDF00A8565B /* MyAlamoFireManager.swift in Sources */,
 				245491A72573D8720019FCAE /* SceneDelegate.swift in Sources */,
 				24870C882574AFCF00A8565B /* MyLogger.swift in Sources */,
