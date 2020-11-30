@@ -26,12 +26,53 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UIGestureRecogn
         self.viewConfig()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("HomeVC - viewWillAppear() called")
+        // keyboard noti를 등록한다
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowHandle(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideHandle(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.searchBar.becomeFirstResponder()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("HomeVC - viewWillDisapper()")
+        // keyboard noti를 해제한다
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+
+    // 화면이 넘어가기 전에 준비한다
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("HomeVC - prepare() called / segue.identifier : \(segue.identifier)") // Optional
+        switch segue.identifier {
+        case SEGUE_ID.USER_LIST_VC:
+            // 다음 화면의 뷰 컨트롤러를 가져온다
+            let nextVC = segue.destination as! UserListViewController
+            guard let userInputValue = self.searchBar.text else { return }
+            nextVC.vcTitle = userInputValue + " 👀"
+            break
+        case SEGUE_ID.PHOTO_COLLECTION_VC:
+            let nextVC = segue.destination as! PhotoCollectionViewController
+            guard let userInputValue = self.searchBar.text else { return }
+            nextVC.vcTitle = userInputValue + " 🌌"
+            break
+        default: break
+        }
+    }
+
     //MARK: - fileprivate methods
     fileprivate func viewConfig() {
         // ui 설정
         self.searchButton.layer.cornerRadius = 10
         self.searchBar.searchBarStyle = .minimal
-        self.searchBar.becomeFirstResponder()
         // delegate 설정
         self.searchBar.delegate = self
         self.keyboardDismissTapGesture.delegate = self
@@ -50,6 +91,23 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UIGestureRecogn
         }
         // 화면이동
         self.performSegue(withIdentifier: segueId, sender: self) // home vc에서 보내는 segue
+    }
+
+    // MARK: - @objc methods
+    @objc func keyboardWillShowHandle(notification: NSNotification) {
+        print("HomeVC - keyboardWillShowHandle() called")
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if (searchButton.frame.origin.y > keyboardSize.height) {
+                // 키보드가 버튼을 덮는 경우, 버튼이 적용된 길이 - 키보드 길이 만큼 화면을 올려준다
+                // 값은 마이너스여야 올라가기 때문에 키보드 길이에서 버튼이 적용된 길이를 뺀다
+                self.view.frame.origin.y = keyboardSize.height - (searchButton.frame.origin.y)
+            }
+        }
+    }
+
+    @objc func keyboardWillHideHandle(notification: NSNotification) {
+        print("HomeVC - keyboardWillHideHandle() called")
+        self.view.frame.origin.y = 0
     }
 
     // MARK: - IBAction methods

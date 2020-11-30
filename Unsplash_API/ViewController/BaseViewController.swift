@@ -1,18 +1,27 @@
 //
-//  UserListVCViewController.swift
+//  BaseViewController.swift
 //  Unsplash_API
 //
-//  Created by Allie Kim on 2020/11/29.
+//  Created by Allie Kim on 2020/11/30.
 //
 
 import UIKit
 
-class UserListViewController: BaseViewController {
+class BaseViewController: UIViewController {
+
+    var vcTitle: String = "" {
+        //
+        didSet {
+            print("userListVC - vcTitle didSet() called / vcTitle: \(vcTitle)")
+            self.title = vcTitle
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
+
 
     /*
     // MARK: - Navigation
