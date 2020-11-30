@@ -154,7 +154,7 @@
     <resources>
         <image name="person.2.fill" catalog="system" width="128" height="80"/>
         <image name="photo.on.rectangle.angled" catalog="system" width="128" height="101"/>
-        <image name="unsplash" width="336" height="336"/>
+        <image name="unsplash" width="112" height="112"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

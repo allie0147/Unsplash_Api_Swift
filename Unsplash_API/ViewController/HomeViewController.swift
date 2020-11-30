@@ -7,6 +7,7 @@
 
 import UIKit
 import Toast_Swift
+import Alamofire
 
 class HomeViewController: UIViewController, UISearchBarDelegate, UIGestureRecognizerDelegate {
 
@@ -111,6 +112,35 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UIGestureRecogn
     }
 
     // MARK: - IBAction methods
+    @IBAction func onSearchButtonClicked(_ sender: UIButton) {
+        print("HomeVC - onSearchButtonClicked() called / segment index :\(searchFilterSegment.selectedSegmentIndex)")
+//        let url = API.BASE_URL + "search/photos"
+        guard let userInput = self.searchBar.text else { return }
+//        let queryParam = ["client_id": API.CLIENT_ID, "query": userInput]
+//        AF.request(url, method: .get, parameters: queryParam).responseJSON { response in
+//            debugPrint(response)
+//        }
+//        var urlToCall: URLRequestConvertible
+//        switch searchFilterSegment.selectedSegmentIndex {
+//        case 0:
+//
+//        case 1:
+//
+//        }
+        
+        
+        MyAlamofireManager.shared.session.request(MySearchRouter.searchPhotos(term: userInput))
+            .responseJSON(completionHandler: { response in
+            debugPrint(response)
+                
+
+
+        })
+
+
+//        pushVC() // 화면 이동
+    }
+
     @IBAction func searchFilterValueChanged(_ sender: UISegmentedControl) {
         print("HomeVC - searchFilterValueChanged() called")
         var searchBarTitle = ""
@@ -127,11 +157,6 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UIGestureRecogn
         // searchBar에서는 키보드 포커싱 이벤트
         self.searchBar.becomeFirstResponder()
 //      #  self.searchBar.resignFirstResponder() : first responder 해제
-    }
-
-    @IBAction func onSearchButtonClicked(_ sender: UIButton) {
-        print("HomeVC - onSearchButtonClicked() called / segment index :\(searchFilterSegment.selectedSegmentIndex)")
-        pushVC() // 화면 이동
     }
 
     // MARK: - UISearchBar Delegate methods
