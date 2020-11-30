@@ -1,0 +1,6 @@
+framework module Pods_Unsplash_API {
+  umbrella header "Pods-Unsplash_API-umbrella.h"
+
+  export *
+  module * { export * }
+}
