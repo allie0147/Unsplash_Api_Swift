@@ -120,22 +120,34 @@ class HomeViewController: BaseViewController, UISearchBarDelegate, UIGestureReco
 //        AF.request(url, method: .get, parameters: queryParam).responseJSON { response in
 //            debugPrint(response)
 //        }
-        var urlToCall: URLRequestConvertible?
+//        var urlToCall: URLRequestConvertible?
 
         switch searchFilterSegment.selectedSegmentIndex {
         case 0:
 //            urlToCall = MySearchRouter.searchPhotos(term: userInput)
             MyAlamofireManager.shared.getPhotos(searchTerm: userInput,
-                completion: { result in
+                completion: { [weak self] result in
+                    guard let self = self else { return }
                     switch result {
                     case .success(let fetchedPhotos):
                         print("HomeVC - getPhotos.success - fetchedPhotos.count : \(fetchedPhotos.count)")
                     case .failure(let error):
                         print("HomeVc - getPhotos.failure - error : \(error.rawValue)")
+                        self.view.makeToast(error.rawValue, duration: 1.0, position: .center)
                     }
                 })
         case 1:
-            urlToCall = MySearchRouter.searchUsers(term: userInput)
+//            urlToCall = MySearchRouter.searchUsers(term: userInput)
+            MyAlamofireManager.shared.getUsers(searchTerm: userInput, completion: { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .success(let fetchedUsers):
+                    print("HomeVC - getUsers.success - fetchedUsers.count : \(fetchedUsers.count)")
+                case .failure(let error) :
+                    print("HomeVC - getUsers.failure - error : \(error.rawValue)")
+                    self.view.makeToast(error.rawValue, duration: 1.0, position: .center)
+                }
+            })
         default:
             print("default")
         }

@@ -37,9 +37,7 @@ final class MyAlamofireManager {
             .request(MySearchRouter.searchPhotos(term: userInput))
             .validate(statusCode: 200..<401)
             .responseJSON(completionHandler: { response in
-
                 guard let responseValue = response.value else { return }
-
                 let responseJson = JSON(responseValue)
                 var photos = [Photo]()
 
@@ -58,9 +56,38 @@ final class MyAlamofireManager {
                 }
                 if photos.count > 0 {
                     completion(.success(photos))
-                }else {
+                } else {
                     completion(.failure(.noContent))
                 }
 
             }) }
+
+    func getUsers(searchTerm userInput: String, completion: @escaping (Result<[User], MyError>) -> Void) {
+        print("MyAlamofireManager - getUsers() called / userInput: \(userInput)")
+        self.session
+            .request(MySearchRouter.searchUsers(term: userInput))
+            .validate(statusCode: 200..<401)
+            .responseJSON(completionHandler: { response in
+                guard let responseValue = response.value else { return }
+                let responseJson = JSON(responseValue)
+                var users = [User]()
+
+                let jsonArray = responseJson["results"]
+                for (index, subJson): (String, JSON) in jsonArray {
+                    print("index : \(index), subJson: \(subJson)")
+                    let username = subJson["username"].string ?? ""
+                    let name = subJson["name"].string ?? ""
+                    let profileImage = subJson["profile_image"]["small"].string ?? ""
+                    let totalLikes = subJson["total_likes"].intValue
+                    let totalPhotos = subJson["total_photos"].intValue
+                    let userItem = User(username: username, name: name, profileImage: profileImage, totalLikes: totalLikes, totalPhotos: totalPhotos)
+                    users.append(userItem)
+                }
+                if users.count > 0 {
+                    completion(.success(users))
+                } else {
+                    completion(.failure(.noContent))
+                }
+            })
+    }
 }
