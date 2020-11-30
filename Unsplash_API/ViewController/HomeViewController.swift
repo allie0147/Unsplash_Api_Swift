@@ -9,7 +9,7 @@ import UIKit
 import Toast_Swift
 import Alamofire
 
-class HomeViewController: UIViewController, UISearchBarDelegate, UIGestureRecognizerDelegate {
+class HomeViewController: BaseViewController, UISearchBarDelegate, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var searchFilterSegment: UISegmentedControl!
 
@@ -120,24 +120,25 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UIGestureRecogn
 //        AF.request(url, method: .get, parameters: queryParam).responseJSON { response in
 //            debugPrint(response)
 //        }
-//        var urlToCall: URLRequestConvertible
-//        switch searchFilterSegment.selectedSegmentIndex {
-//        case 0:
-//
-//        case 1:
-//
-//        }
-        
-        
-        MyAlamofireManager.shared.session.request(MySearchRouter.searchPhotos(term: userInput))
-            .responseJSON(completionHandler: { response in
-            debugPrint(response)
-                
+        var urlToCall: URLRequestConvertible?
 
-
-        })
-
-
+        switch searchFilterSegment.selectedSegmentIndex {
+        case 0:
+            urlToCall = MySearchRouter.searchPhotos(term: userInput)
+        case 1:
+            urlToCall = MySearchRouter.searchUsers(term: userInput)
+        default:
+            print("default")
+        }
+        if let urlConvertible = urlToCall {
+            MyAlamofireManager
+                .shared
+                .session
+                .request(urlConvertible)
+                .validate(statusCode: 200..<401)
+                .responseJSON(completionHandler: { response in
+//                    debugPrint(response)
+                }) }
 //        pushVC() // 화면 이동
     }
 
