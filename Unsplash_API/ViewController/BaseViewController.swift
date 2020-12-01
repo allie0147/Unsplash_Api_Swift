@@ -13,7 +13,7 @@ class BaseViewController: UIViewController {
     var vcTitle: String = "" {
 
         didSet {
-            print("userListVC - vcTitle didSet() called / vcTitle: \(vcTitle)")
+            print("BaseVC - vcTitle didSet() called / vcTitle: \(vcTitle)")
             self.title = vcTitle
         }
     }

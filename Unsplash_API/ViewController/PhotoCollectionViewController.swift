@@ -9,12 +9,23 @@ import UIKit
 
 class PhotoCollectionViewController: BaseViewController {
 
+    var fetchedPhoto: [Photo]?
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("PhotoCollectionVC - viewWillApperar()")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("PhotoCollectionVC - viewDidLoad()")
+        guard let fetched = fetchedPhoto else {
+            return
+        }
+        print("PhotoCollectionVC - fetched data: \(fetched)")
 
-        // Do any additional setup after loading the view.
     }
-    
+
 
     /*
     // MARK: - Navigation

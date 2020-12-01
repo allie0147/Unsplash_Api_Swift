@@ -53,13 +53,13 @@ final class MyAlamofireManager {
                     let photoItem = Photo(thumbnail: thumbnail, username: username, likeCount: likesCount, createdAt: createdAt)
                     // photo 배열에 추가
                     photos.append(photoItem)
+                    print("getPhotos() - append : \(photoItem)")
                 }
                 if photos.count > 0 {
                     completion(.success(photos))
                 } else {
                     completion(.failure(.noContent))
                 }
-
             }) }
 
     func getUsers(searchTerm userInput: String, completion: @escaping (Result<[User], MyError>) -> Void) {

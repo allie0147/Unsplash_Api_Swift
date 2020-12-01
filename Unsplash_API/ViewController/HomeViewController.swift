@@ -21,6 +21,10 @@ class HomeViewController: BaseViewController, UISearchBarDelegate, UIGestureReco
 
     var keyboardDismissTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: nil)
 
+    var photoData: [Photo]?
+
+    var userData: [User]?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         print("HomeVC - viewDidLoad() called")
@@ -49,8 +53,7 @@ class HomeViewController: BaseViewController, UISearchBarDelegate, UIGestureReco
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
-
-    // 화면이 넘어가기 전에 준비한다
+    // 화면이 넘어가기 전에 준비한다 == pushVC()의 performSegue 이후에 진행된다
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("HomeVC - prepare() called / segue.identifier : \(segue.identifier)") // Optional
         switch segue.identifier {
@@ -59,12 +62,12 @@ class HomeViewController: BaseViewController, UISearchBarDelegate, UIGestureReco
             let nextVC = segue.destination as! UserListViewController
             guard let userInputValue = self.searchBar.text else { return }
             nextVC.vcTitle = userInputValue + " 👀"
-            break
+            nextVC.fetchedUser = userData
         case SEGUE_ID.PHOTO_COLLECTION_VC:
             let nextVC = segue.destination as! PhotoCollectionViewController
             guard let userInputValue = self.searchBar.text else { return }
             nextVC.vcTitle = userInputValue + " 🌌"
-            break
+            nextVC.fetchedPhoto = photoData
         default: break
         }
     }
@@ -80,7 +83,8 @@ class HomeViewController: BaseViewController, UISearchBarDelegate, UIGestureReco
         self.view.addGestureRecognizer(keyboardDismissTapGesture)
     }
 
-    fileprivate func pushVC() {
+    fileprivate func pushVC() { // before prepare() called
+        print("HomeVC - pushVC() called")
         var segueId = ""
         switch searchFilterSegment.selectedSegmentIndex {
         case 0:
@@ -131,6 +135,8 @@ class HomeViewController: BaseViewController, UISearchBarDelegate, UIGestureReco
                     switch result {
                     case .success(let fetchedPhotos):
                         print("HomeVC - getPhotos.success - fetchedPhotos.count : \(fetchedPhotos.count)")
+                        self.photoData = fetchedPhotos // 값 있음 둘다
+                        self.pushVC() // 데이터를 다 받아 온 후에 pushVC()를 불러 segue를 실행시킨다
                     case .failure(let error):
                         print("HomeVc - getPhotos.failure - error : \(error.rawValue)")
                         self.view.makeToast(error.rawValue, duration: 1.0, position: .center)
@@ -143,7 +149,9 @@ class HomeViewController: BaseViewController, UISearchBarDelegate, UIGestureReco
                 switch result {
                 case .success(let fetchedUsers):
                     print("HomeVC - getUsers.success - fetchedUsers.count : \(fetchedUsers.count)")
-                case .failure(let error) :
+                    self.userData = fetchedUsers
+                    self.pushVC()
+                case .failure(let error):
                     print("HomeVC - getUsers.failure - error : \(error.rawValue)")
                     self.view.makeToast(error.rawValue, duration: 1.0, position: .center)
                 }
@@ -158,7 +166,7 @@ class HomeViewController: BaseViewController, UISearchBarDelegate, UIGestureReco
 //                .request(urlConvertible)
 //                .validate(statusCode: 200..<401)
 //                .responseJSON(completionHandler: { response in
-////                    debugPrint(response)
+//                    debugPrint(response)
 //                }) }
 //        pushVC() // 화면 이동
     }
