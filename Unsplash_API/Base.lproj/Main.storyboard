@@ -3,8 +3,10 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -93,28 +95,55 @@
                         <outlet property="searchFilterSegment" destination="1bW-Tn-bou" id="Uc3-Iu-N0b"/>
                         <outlet property="searchIndicator" destination="K2e-0b-G3U" id="UaT-c1-n6q"/>
                         <segue destination="Rot-tE-Nno" kind="show" identifier="goToUserList" id="z3q-W0-r6Z"/>
-                        <segue destination="Ire-7l-eSN" kind="show" identifier="goToPhotoCollection" id="E5y-Qs-csU"/>
+                        <segue destination="8rJ-UP-Lft" kind="show" identifier="goToPhotoCollection" id="Er5-LL-6q0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1050.7246376811595" y="75.669642857142847"/>
+            <point key="canvasLocation" x="1145" y="50"/>
         </scene>
         <!--Photo Collection View Controller-->
-        <scene sceneID="bdh-ww-fAX">
+        <scene sceneID="1gh-2k-u9L">
             <objects>
-                <viewController id="Ire-7l-eSN" customClass="PhotoCollectionViewController" customModule="Unsplash_API" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="qE3-Wd-ge0">
+                <viewController id="8rJ-UP-Lft" customClass="PhotoCollectionViewController" customModule="Unsplash_API" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QNm-oh-1Ff">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="3Eo-G4-2Qf"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0fR-jT-ebn">
+                                <rect key="frame" x="20" y="0.0" width="374" height="862"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="BNz-UL-nUU">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="KnG-1T-awE">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Bts-57-i2B">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                        <color key="backgroundColor" name="AccentColor"/>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="hVX-65-ygr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="U3f-Fz-IOn"/>
+                    <navigationItem key="navigationItem" id="F9l-cF-Svs"/>
+                    <connections>
+                        <outlet property="collectionView" destination="0fR-jT-ebn" id="0Uj-jV-6jZ"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gLk-7j-dQT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5GZ-Ay-2h7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1959" y="447"/>
+            <point key="canvasLocation" x="1973.913043478261" y="416.51785714285711"/>
         </scene>
         <!--User List View Controller-->
         <scene sceneID="hpj-pd-e40">
@@ -155,6 +184,9 @@
         <image name="person.2.fill" catalog="system" width="128" height="80"/>
         <image name="photo.on.rectangle.angled" catalog="system" width="128" height="101"/>
         <image name="unsplash" width="112" height="112"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

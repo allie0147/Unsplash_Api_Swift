@@ -106,8 +106,8 @@
 			children = (
 				245491BE2573DBCF0019FCAE /* UserListViewController.swift */,
 				245491A82573D8720019FCAE /* HomeViewController.swift */,
-				245491C32573DC230019FCAE /* PhotoCollectionViewController.swift */,
 				24870C712574852C00A8565B /* BaseViewController.swift */,
+				245491C32573DC230019FCAE /* PhotoCollectionViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
