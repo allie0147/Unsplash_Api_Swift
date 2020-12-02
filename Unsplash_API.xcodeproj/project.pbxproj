@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		242351C1257624FA00E66839 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242351C0257624FA00E66839 /* CustomCollectionViewCell.swift */; };
 		245491A52573D8720019FCAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245491A42573D8720019FCAE /* AppDelegate.swift */; };
 		245491A72573D8720019FCAE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245491A62573D8720019FCAE /* SceneDelegate.swift */; };
 		245491A92573D8720019FCAE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245491A82573D8720019FCAE /* HomeViewController.swift */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		132DCFDC773017E2C5CCA590 /* Pods-Unsplash_API.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unsplash_API.debug.xcconfig"; path = "Target Support Files/Pods-Unsplash_API/Pods-Unsplash_API.debug.xcconfig"; sourceTree = "<group>"; };
+		242351C0257624FA00E66839 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		245491A12573D8720019FCAE /* Unsplash_API.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unsplash_API.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		245491A42573D8720019FCAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		245491A62573D8720019FCAE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +68,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		242351BF257624DE00E66839 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				242351C0257624FA00E66839 /* CustomCollectionViewCell.swift */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
 		245491982573D8720019FCAE = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +97,7 @@
 		245491A32573D8720019FCAE /* Unsplash_API */ = {
 			isa = PBXGroup;
 			children = (
+				242351BF257624DE00E66839 /* Custom */,
 				24870C912574C5DA00A8565B /* Model */,
 				24870C7C2574ABCA00A8565B /* API */,
 				24870C6C257483F500A8565B /* Utils */,
@@ -284,6 +295,7 @@
 				24870C9E2574D11C00A8565B /* User.swift in Sources */,
 				24870C962574C62D00A8565B /* MyError.swift in Sources */,
 				24870C7E2574ABDF00A8565B /* MyAlamoFireManager.swift in Sources */,
+				242351C1257624FA00E66839 /* CustomCollectionViewCell.swift in Sources */,
 				245491A72573D8720019FCAE /* SceneDelegate.swift in Sources */,
 				24870C882574AFCF00A8565B /* MyLogger.swift in Sources */,
 				24870C722574852C00A8565B /* BaseViewController.swift in Sources */,
