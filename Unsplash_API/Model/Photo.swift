@@ -8,7 +8,7 @@
 import Foundation
 
 struct Photo: Codable {
-    var thumbnail: String
+    var photoUrl: String
     var username: String
     var likeCount: Int
     var createdAt: String
