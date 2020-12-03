@@ -16,6 +16,7 @@
 		245491B12573D8760019FCAE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 245491AF2573D8760019FCAE /* LaunchScreen.storyboard */; };
 		245491BF2573DBCF0019FCAE /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245491BE2573DBCF0019FCAE /* UserListViewController.swift */; };
 		245491C42573DC230019FCAE /* PhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245491C32573DC230019FCAE /* PhotoCollectionViewController.swift */; };
+		24849B142578C4EE0059A224 /* WebKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24849B132578C4EE0059A224 /* WebKitViewController.swift */; };
 		24870C6E2574840D00A8565B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24870C6D2574840D00A8565B /* Constants.swift */; };
 		24870C722574852C00A8565B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24870C712574852C00A8565B /* BaseViewController.swift */; };
 		24870C7E2574ABDF00A8565B /* MyAlamoFireManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24870C7D2574ABDF00A8565B /* MyAlamoFireManager.swift */; };
@@ -42,6 +43,7 @@
 		245491B22573D8760019FCAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		245491BE2573DBCF0019FCAE /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
 		245491C32573DC230019FCAE /* PhotoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewController.swift; sourceTree = "<group>"; };
+		24849B132578C4EE0059A224 /* WebKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebKitViewController.swift; sourceTree = "<group>"; };
 		24870C6D2574840D00A8565B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		24870C712574852C00A8565B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		24870C7D2574ABDF00A8565B /* MyAlamoFireManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAlamoFireManager.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				245491A82573D8720019FCAE /* HomeViewController.swift */,
 				24870C712574852C00A8565B /* BaseViewController.swift */,
 				245491C32573DC230019FCAE /* PhotoCollectionViewController.swift */,
+				24849B132578C4EE0059A224 /* WebKitViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 			files = (
 				24870C8B2574B0C800A8565B /* MyApiStatusLogger.swift in Sources */,
 				245491C42573DC230019FCAE /* PhotoCollectionViewController.swift in Sources */,
+				24849B142578C4EE0059A224 /* WebKitViewController.swift in Sources */,
 				245491BF2573DBCF0019FCAE /* UserListViewController.swift in Sources */,
 				24870C852574ACA400A8565B /* BaseInterceptor.swift in Sources */,
 				24870C8F2574B1D700A8565B /* MySearchRouter.swift in Sources */,

@@ -46,11 +46,12 @@ final class MyAlamofireManager {
                 for (index, subJson): (String, JSON) in jsonArray {
                     print("index : \(index), subJson: \(subJson)")
                     // 데이터 파싱
+                    let photoId = subJson["id"].string ?? ""
                     let photoUrl = subJson["urls"]["small"].string ?? ""
                     let username = subJson["user"]["username"].string ?? ""
                     let likesCount = subJson["likes"].intValue
                     let createdAt = subJson["created_at"].string ?? ""
-                    let photoItem = Photo(photoUrl: photoUrl, username: username, likeCount: likesCount, createdAt: createdAt)
+                    let photoItem = Photo(photoId: photoId, photoUrl: photoUrl, username: username, likeCount: likesCount, createdAt: createdAt)
                     // photo 배열에 추가
                     photos.append(photoItem)
                     print("getPhotos() - append : \(photoItem)")

@@ -8,12 +8,13 @@
 import UIKit
 import SDWebImage
 
-class PhotoCollectionViewController: BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class PhotoCollectionViewController: BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate {
 
     var fetchedPhoto: [Photo]?
 
-    @IBOutlet weak var collectionView: UICollectionView!
+    var photoId: String?
 
+    @IBOutlet weak var collectionView: UICollectionView!
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -32,6 +33,11 @@ class PhotoCollectionViewController: BaseViewController, UICollectionViewDelegat
         self.collectionView.reloadData()
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let nextVC = segue.destination as! WebKitViewController
+        nextVC.id = photoId
+    }
+
     //MARK: - UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellRatio: CGFloat = 1
@@ -47,9 +53,11 @@ class PhotoCollectionViewController: BaseViewController, UICollectionViewDelegat
         return fetchedPhoto?.count ?? 0
     }
 
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        <#code#>
-//    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let id = fetchedPhoto?[indexPath.row].photoId else { return }
+        self.photoId = id
+        performSegue(withIdentifier: SEGUE_ID.WEB_KIT_VC, sender: self)
+    }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCollectionViewCell
@@ -72,9 +80,6 @@ class PhotoCollectionViewController: BaseViewController, UICollectionViewDelegat
         }
         return cell
     }
-
-
-
     /*
     // MARK: - Navigation
 
@@ -84,7 +89,6 @@ class PhotoCollectionViewController: BaseViewController, UICollectionViewDelegat
         // Pass the selected object to the new view controller.
     }
     */
-
 }
 // MARK: - Extension
 extension UICollectionView {
@@ -102,3 +106,4 @@ extension UICollectionView {
         return CGSize(width: cellWidth, height: cellHeight)
     }
 }
+
