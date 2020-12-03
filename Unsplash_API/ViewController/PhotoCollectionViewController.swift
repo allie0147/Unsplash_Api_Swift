@@ -34,7 +34,7 @@ class PhotoCollectionViewController: BaseViewController, UICollectionViewDelegat
 
     //MARK: - UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellRatio: CGFloat = 1.05
+        let cellRatio: CGFloat = 1
 //        if (UIDevice.current.orientation.isLandscape) {
 //            return self.collectionView.getCellSize(numberOfItemsRowAt: 5, cellRatio: cellRatio)
 //        } else {
@@ -55,32 +55,31 @@ class PhotoCollectionViewController: BaseViewController, UICollectionViewDelegat
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCollectionViewCell
         print("CELL: \(indexPath.row)")
         print("fetched cell photo: \(fetchedPhoto?[indexPath.row])")
-//        cell.imageView.layer.borderWidth = 1.5
-//        cell.imageView.layer.borderColor = UIColor.black.cgColor
-        // 두 레이어 겹치는 부분 border 하나 제거 !
         // corner radius 설정 !
-
+        cell.layer.cornerRadius = 10
+        // image view style
+        let transformer = SDImageRoundCornerTransformer(radius: 10, corners: .allCorners, borderWidth: 2, borderColor: UIColor(named: "border"))
         if let item = fetchedPhoto?[indexPath.row] {
             DispatchQueue.main.async {
-                cell.lblLikeCount.text = item.likeCount.description.trimmingCharacters(in: .whitespacesAndNewlines)
-                cell.lblCreatedAt.text = item.createdAt.description.trimmingCharacters(in: .whitespacesAndNewlines)
-                //             item.thumbnail
-//                cell.imageView.sd_setImage(with: item.thumbnail, placeholder: nil)
-                
-                cell.imageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
-                let transformer = SDImageRoundCornerTransformer(radius: 10, corners: .allCorners, borderWidth: 1.5, borderColor: UIColor.black)
+                cell.lblLikeCount.text = String(item.likeCount)
+                cell.imageView.sd_imageIndicator = SDWebImageActivityIndicator.large
                 cell.imageView.sd_setImage(with: URL(string: item.photoUrl), placeholderImage: nil, context: [.imageTransformer: transformer])
-//                let manager = SDWebImageManager.shared.loadImage(with: URL(string: item.photoUrl), options: SDWebImageOptions, progress: nil, completed: {_,_,_,_,_,_ in
-//
-//                    
-//
-//                })
-//                let corners = [SDRectCorner.topLeft, SDRectCorner.topRight]
-//                cell.imageView.sd_imageIndicator = SDWebImageProgressIndicator.`default`
-                cell.lblUsername.text = item.username.description.trimmingCharacters(in: .whitespacesAndNewlines)
+                cell.lblUsername.text = item.username
+                // date
+                let dates = item.createdAt.components(separatedBy: ["T", "-"])
+                cell.lblCreatedAt.text = "\(dates[0])년 \(dates[1])월 \(dates[2])일"
             }
         }
-        //        Optional(Unsplash_API.Photo(thumbnail: "https://images.unsplash.com/photo-1543458113-18eaab9bcd3f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxODY4MTV8MHwxfHNlYXJjaHwxfHx8ZW58MHx8fA&ixlib=rb-1.2.1&q=80&w=200", username: "jcdilorenzo", likeCount: 49, createdAt: "2018-11-28T21:28:03-05:00"))
+        // 검색 버튼 one click only
+        // 키보드 검색 버튼에도 연결
+
+        // date 변환
+
+        // touch event 설정
+
+
+
+        // createdAt: "2018-11-28T21:28:03-05:00"))
         return cell
     }
 
