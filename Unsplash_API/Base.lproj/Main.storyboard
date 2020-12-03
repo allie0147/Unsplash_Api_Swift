@@ -228,8 +228,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z5d-gn-a6c">
-                                <rect key="frame" x="20" y="186" width="374" height="524"/>
+                            <wkWebView contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Z5d-gn-a6c">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -240,12 +240,12 @@
                         <viewLayoutGuide key="safeArea" id="h6w-4D-afq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Z5d-gn-a6c" firstAttribute="centerX" secondItem="y4q-Z1-0pf" secondAttribute="centerX" id="5gl-Zt-LIa"/>
-                            <constraint firstItem="Z5d-gn-a6c" firstAttribute="leading" secondItem="h6w-4D-afq" secondAttribute="leading" constant="20" id="BID-wo-Wbu"/>
-                            <constraint firstItem="Z5d-gn-a6c" firstAttribute="centerY" secondItem="y4q-Z1-0pf" secondAttribute="centerY" id="MGz-62-F4x"/>
-                            <constraint firstItem="h6w-4D-afq" firstAttribute="trailing" secondItem="Z5d-gn-a6c" secondAttribute="trailing" constant="20" id="UWL-tU-HMk"/>
-                            <constraint firstItem="Z5d-gn-a6c" firstAttribute="top" secondItem="h6w-4D-afq" secondAttribute="top" constant="46" id="Z1R-HH-8fh"/>
-                            <constraint firstItem="Z5d-gn-a6c" firstAttribute="centerY" secondItem="y4q-Z1-0pf" secondAttribute="centerY" id="zju-RH-Xff"/>
+                            <constraint firstItem="Z5d-gn-a6c" firstAttribute="leading" secondItem="h6w-4D-afq" secondAttribute="leading" id="625-r5-wex"/>
+                            <constraint firstItem="Z5d-gn-a6c" firstAttribute="centerX" secondItem="y4q-Z1-0pf" secondAttribute="centerX" id="QRY-ZJ-DVm"/>
+                            <constraint firstItem="Z5d-gn-a6c" firstAttribute="centerY" secondItem="y4q-Z1-0pf" secondAttribute="centerY" id="Roy-sW-pAD"/>
+                            <constraint firstItem="Z5d-gn-a6c" firstAttribute="top" secondItem="y4q-Z1-0pf" secondAttribute="top" id="Ty0-Fv-bzv"/>
+                            <constraint firstItem="Z5d-gn-a6c" firstAttribute="trailing" secondItem="h6w-4D-afq" secondAttribute="trailing" id="uOs-2a-ooJ"/>
+                            <constraint firstAttribute="bottom" secondItem="Z5d-gn-a6c" secondAttribute="bottom" id="z3t-KS-YSq"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="nPp-3W-Ri4"/>

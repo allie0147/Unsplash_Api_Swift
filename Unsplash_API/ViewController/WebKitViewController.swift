@@ -22,6 +22,7 @@ class WebKitViewController: BaseViewController {
     func loadWebPage(_ id: String) {
         let myUrl = URL(string: UNSPLASH_URL.PHOTO_URL + id)
         let myRequest = URLRequest(url: myUrl!)
+        webView.scrollView.bounces = false
         webView.load(myRequest)
     }
 }
