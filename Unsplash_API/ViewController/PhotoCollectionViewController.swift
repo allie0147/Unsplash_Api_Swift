@@ -70,16 +70,6 @@ class PhotoCollectionViewController: BaseViewController, UICollectionViewDelegat
                 cell.lblCreatedAt.text = "\(dates[0])년 \(dates[1])월 \(dates[2])일"
             }
         }
-        // 검색 버튼 one click only
-        // 키보드 검색 버튼에도 연결
-
-        // date 변환
-
-        // touch event 설정
-
-
-
-        // createdAt: "2018-11-28T21:28:03-05:00"))
         return cell
     }
 
