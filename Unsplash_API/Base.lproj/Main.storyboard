@@ -57,7 +57,7 @@
                                     </button>
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="K2e-0b-G3U">
                                         <rect key="frame" x="177" y="301" width="20" height="20"/>
-                                        <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -213,11 +213,49 @@
                     <navigationItem key="navigationItem" id="F9l-cF-Svs"/>
                     <connections>
                         <outlet property="collectionView" destination="0fR-jT-ebn" id="0Uj-jV-6jZ"/>
+                        <segue destination="uCZ-zz-2bG" kind="show" identifier="goToUnsplash" id="zsp-em-pMO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5GZ-Ay-2h7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1973.913043478261" y="416.51785714285711"/>
+            <point key="canvasLocation" x="1974" y="380"/>
+        </scene>
+        <!--Web Kit View Controller-->
+        <scene sceneID="eBK-jT-KFa">
+            <objects>
+                <viewController id="uCZ-zz-2bG" customClass="WebKitViewController" customModule="Unsplash_API" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="y4q-Z1-0pf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Z5d-gn-a6c">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="h6w-4D-afq"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Z5d-gn-a6c" firstAttribute="leading" secondItem="h6w-4D-afq" secondAttribute="leading" id="625-r5-wex"/>
+                            <constraint firstItem="Z5d-gn-a6c" firstAttribute="centerX" secondItem="y4q-Z1-0pf" secondAttribute="centerX" id="QRY-ZJ-DVm"/>
+                            <constraint firstItem="Z5d-gn-a6c" firstAttribute="centerY" secondItem="y4q-Z1-0pf" secondAttribute="centerY" id="Roy-sW-pAD"/>
+                            <constraint firstItem="Z5d-gn-a6c" firstAttribute="top" secondItem="y4q-Z1-0pf" secondAttribute="top" id="Ty0-Fv-bzv"/>
+                            <constraint firstItem="Z5d-gn-a6c" firstAttribute="trailing" secondItem="h6w-4D-afq" secondAttribute="trailing" id="uOs-2a-ooJ"/>
+                            <constraint firstAttribute="bottom" secondItem="Z5d-gn-a6c" secondAttribute="bottom" id="z3t-KS-YSq"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="nPp-3W-Ri4"/>
+                    <connections>
+                        <outlet property="webView" destination="Z5d-gn-a6c" id="Rbd-db-gRa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ViB-Uz-LhE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2808.6956521739135" y="379.6875"/>
         </scene>
         <!--User List View Controller-->
         <scene sceneID="hpj-pd-e40">

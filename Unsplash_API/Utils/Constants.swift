@@ -10,6 +10,7 @@ import Foundation
 enum SEGUE_ID {
     static let USER_LIST_VC = "goToUserList"
     static let PHOTO_COLLECTION_VC = "goToPhotoCollection"
+    static let WEB_KIT_VC = "goToUnsplash"
 }
 
 enum API {
@@ -21,4 +22,9 @@ enum NOTIFICATION {
     enum API {
         static let AUTH_FAIL = "authentication_fail"
     }
+}
+
+enum UNSPLASH_URL {
+    static let PHOTO_URL: String = "https://unsplash.com/photos/"
+    static let USER_URL: String = "https://unsplash.com/@"
 }

@@ -31,9 +31,26 @@ class HomeViewController: BaseViewController, UISearchBarDelegate, UIGestureReco
         self.viewConfig()
     }
 
+    func searchButtonEnabled() { // 버튼 사용 가능
+        self.searchButton.isUserInteractionEnabled = true
+        self.searchButton.isHidden = false
+        self.searchButton.setTitle("검색", for: .normal)
+        self.searchIndicator.isHidden = true
+    }
+
+    func searchButtonDisabled() { // 버튼 사용 불가능
+        self.searchButton.isUserInteractionEnabled = false
+        self.searchButton.isHidden = false
+        self.searchButton.setTitle("", for: .normal)
+        self.searchIndicator.isHidden = false
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("HomeVC - viewWillAppear() called")
+        self.searchButton.isUserInteractionEnabled = true
+        self.searchIndicator.isHidden = true
+        self.searchButton.setTitle("검색", for: .normal)
         // keyboard noti를 등록한다
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowHandle(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideHandle(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -119,13 +136,13 @@ class HomeViewController: BaseViewController, UISearchBarDelegate, UIGestureReco
     @IBAction func onSearchButtonClicked(_ sender: UIButton) {
         print("HomeVC - onSearchButtonClicked() called / segment index :\(searchFilterSegment.selectedSegmentIndex)")
 //        let url = API.BASE_URL + "search/photos"
+        searchButtonDisabled()
         guard let userInput = self.searchBar.text else { return }
 //        let queryParam = ["client_id": API.CLIENT_ID, "query": userInput]
 //        AF.request(url, method: .get, parameters: queryParam).responseJSON { response in
 //            debugPrint(response)
 //        }
 //        var urlToCall: URLRequestConvertible?
-
         switch searchFilterSegment.selectedSegmentIndex {
         case 0:
 //            urlToCall = MySearchRouter.searchPhotos(term: userInput)
@@ -139,6 +156,7 @@ class HomeViewController: BaseViewController, UISearchBarDelegate, UIGestureReco
                         self.pushVC() // 데이터를 다 받아 온 후에 pushVC()를 불러 segue를 실행시킨다
                     case .failure(let error):
                         print("HomeVc - getPhotos.failure - error : \(error.rawValue)")
+                        self.searchButtonEnabled()
                         self.view.makeToast(error.rawValue, duration: 1.0, position: .center)
                     }
                 })
@@ -153,6 +171,7 @@ class HomeViewController: BaseViewController, UISearchBarDelegate, UIGestureReco
                     self.pushVC()
                 case .failure(let error):
                     print("HomeVC - getUsers.failure - error : \(error.rawValue)")
+                    self.searchButtonEnabled()
                     self.view.makeToast(error.rawValue, duration: 1.0, position: .center)
                 }
             })
@@ -192,11 +211,13 @@ class HomeViewController: BaseViewController, UISearchBarDelegate, UIGestureReco
     // MARK: - UISearchBar Delegate methods
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("HomeVC - searchBarSearchButtonClicked()")
-
         guard let userInputString = searchBar.text else { return }
-        if userInputString.isEmpty { self.view.makeToast("검색 키워드를 입력하세요🤓", duration: 1.0, position: .center) }
+        if userInputString.isEmpty {
+            searchButtonEnabled()
+            self.view.makeToast("검색 키워드를 입력하세요🤓", duration: 1.0, position: .center) }
         else {
-            pushVC()
+            onSearchButtonClicked(searchButton)
+            searchButtonDisabled()
             searchBar.resignFirstResponder()
         }
     }
@@ -207,9 +228,9 @@ class HomeViewController: BaseViewController, UISearchBarDelegate, UIGestureReco
         if (searchText.isEmpty) {
             self.searchButton.isHidden = true
             // x 버튼을 눌렀을 때 resign이 적용되지 않아 GCD 사용
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
-                    searchBar.resignFirstResponder()
-                })
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
+//                    searchBar.resignFirstResponder()
+//                })
         } else {
             self.searchButton.isHidden = false
         }
