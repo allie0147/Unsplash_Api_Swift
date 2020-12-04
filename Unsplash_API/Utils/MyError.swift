@@ -2,7 +2,7 @@
 //  MyError.swift
 //  Unsplash_API
 //
-//  Created by ishift on 2020/11/30.
+//  Created by Allie Kim on 2020/11/30.
 //
 
 import Foundation

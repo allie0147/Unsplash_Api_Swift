@@ -37,7 +37,6 @@ class PhotoCollectionViewController: BaseViewController, UICollectionViewDelegat
         let nextVC = segue.destination as! WebKitViewController
         nextVC.id = photoId
     }
-
     //MARK: - UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellRatio: CGFloat = 1
@@ -56,40 +55,38 @@ class PhotoCollectionViewController: BaseViewController, UICollectionViewDelegat
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let id = fetchedPhoto?[indexPath.row].photoId else { return }
         self.photoId = id
-        performSegue(withIdentifier: SEGUE_ID.WEB_KIT_VC, sender: self)
+        performSegue(withIdentifier: SEGUE_ID.WEB_KIT_VC_PHOTO, sender: self)
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCollectionViewCell
         print("CELL: \(indexPath.row)")
-        print("fetched cell photo: \(fetchedPhoto?[indexPath.row])")
         // corner radius 설정 !
         cell.layer.cornerRadius = 10
         // image view style
         let transformer = SDImageRoundCornerTransformer(radius: 10, corners: .allCorners, borderWidth: 2, borderColor: UIColor(named: "border"))
         if let item = fetchedPhoto?[indexPath.row] {
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [self] in
                 cell.lblLikeCount.text = String(item.likeCount)
                 cell.imageView.sd_imageIndicator = SDWebImageActivityIndicator.large
-                cell.imageView.sd_setImage(with: URL(string: item.photoUrl), placeholderImage: nil, context: [.imageTransformer: transformer])
+                cell.imageView.sd_setImage(with: URL(string: item.photoUrl), placeholderImage: nil, options: [.scaleDownLargeImages, .refreshCached], context: [.imageTransformer: transformer])
                 cell.lblUsername.text = item.username
                 // date
                 let dates = item.createdAt.components(separatedBy: ["T", "-"])
                 cell.lblCreatedAt.text = "\(dates[0])년 \(dates[1])월 \(dates[2])일"
+                self.sizeFits(cell)
             }
         }
         return cell
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func sizeFits(_ cell: CustomCollectionViewCell) {
+        cell.lblLikeCount.sizeToFit()
+        cell.lblUsername.sizeToFit()
+        cell.lblCreatedAt.sizeToFit()
     }
-    */
 }
+
 // MARK: - Extension
 extension UICollectionView {
     func getCellSize(numberOfItemsRowAt: CGFloat, cellRatio: CGFloat) -> CGSize {
@@ -106,4 +103,3 @@ extension UICollectionView {
         return CGSize(width: cellWidth, height: cellHeight)
     }
 }
-
