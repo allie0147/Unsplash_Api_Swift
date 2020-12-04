@@ -30,6 +30,7 @@ class UserListViewController: BaseViewController, UITableViewDelegate, UITableVi
         let nextVC = segue.destination as! WebKitViewController
         nextVC.uId = username
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let query = fetchedUser?[indexPath.row].username else { return }
         self.username = query
@@ -42,7 +43,7 @@ class UserListViewController: BaseViewController, UITableViewDelegate, UITableVi
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UserListTableViewCell
-        let transformer = SDImageRoundCornerTransformer(radius: 25, corners: .allCorners, borderWidth: 1, borderColor: UIColor(named: "border"))
+        let transformer = SDImageRoundCornerTransformer(radius: 50, corners: .allCorners, borderWidth: 1, borderColor: UIColor(named: "border"))
         if let item = fetchedUser?[indexPath.row] {
             cell.profileImageView.sd_imageIndicator = SDWebImageActivityIndicator.medium
             cell.profileImageView.sd_setImage(with: URL(string: item.profileImage), placeholderImage: nil, options: [.scaleDownLargeImages, .refreshCached], context: [.imageTransformer: transformer])
