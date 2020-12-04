@@ -30,6 +30,7 @@ class UserListViewController: BaseViewController, UITableViewDelegate, UITableVi
         let nextVC = segue.destination as! WebKitViewController
         nextVC.uId = username
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let query = fetchedUser?[indexPath.row].username else { return }
         self.username = query
