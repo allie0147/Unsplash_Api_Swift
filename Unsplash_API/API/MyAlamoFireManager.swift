@@ -78,7 +78,7 @@ final class MyAlamofireManager {
                     print("index : \(index), subJson: \(subJson)")
                     let username = subJson["username"].string ?? ""
                     let name = subJson["name"].string ?? ""
-                    let profileImage = subJson["profile_image"]["small"].string ?? ""
+                    let profileImage = subJson["profile_image"]["large"].string ?? ""
                     let totalLikes = subJson["total_likes"].intValue
                     let totalPhotos = subJson["total_photos"].intValue
                     let userItem = User(username: username, name: name, profileImage: profileImage, totalLikes: totalLikes, totalPhotos: totalPhotos)
