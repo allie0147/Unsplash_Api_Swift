@@ -213,7 +213,7 @@
                     <navigationItem key="navigationItem" id="F9l-cF-Svs"/>
                     <connections>
                         <outlet property="collectionView" destination="0fR-jT-ebn" id="0Uj-jV-6jZ"/>
-                        <segue destination="uCZ-zz-2bG" kind="show" identifier="goToUnsplash" id="zsp-em-pMO"/>
+                        <segue destination="uCZ-zz-2bG" kind="showDetail" identifier="goToPhotoUnsplash" id="zsp-em-pMO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5GZ-Ay-2h7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -225,11 +225,11 @@
             <objects>
                 <viewController id="uCZ-zz-2bG" customClass="WebKitViewController" customModule="Unsplash_API" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="y4q-Z1-0pf">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Z5d-gn-a6c">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -255,7 +255,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ViB-Uz-LhE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2808.6956521739135" y="379.6875"/>
+            <point key="canvasLocation" x="3045" y="76"/>
         </scene>
         <!--User List View Controller-->
         <scene sceneID="hpj-pd-e40">
@@ -264,14 +264,32 @@
                     <view key="view" contentMode="scaleToFill" id="cR2-LR-5sL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mTd-Tl-RZR">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="7MV-5c-UwA"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="mTd-Tl-RZR" firstAttribute="top" secondItem="cR2-LR-5sL" secondAttribute="top" id="8MF-R0-eYm"/>
+                            <constraint firstItem="mTd-Tl-RZR" firstAttribute="centerX" secondItem="cR2-LR-5sL" secondAttribute="centerX" id="DVY-gV-TYD"/>
+                            <constraint firstAttribute="bottom" secondItem="mTd-Tl-RZR" secondAttribute="bottom" id="Dcs-JI-4AJ"/>
+                            <constraint firstItem="mTd-Tl-RZR" firstAttribute="leading" secondItem="7MV-5c-UwA" secondAttribute="leading" id="hzV-hZ-Rod"/>
+                            <constraint firstItem="mTd-Tl-RZR" firstAttribute="centerY" secondItem="cR2-LR-5sL" secondAttribute="centerY" id="mvF-sM-Ud9"/>
+                            <constraint firstItem="mTd-Tl-RZR" firstAttribute="trailing" secondItem="7MV-5c-UwA" secondAttribute="trailing" id="u5Y-U4-eOW"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pWc-5n-CU0"/>
+                    <connections>
+                        <outlet property="tableView" destination="mTd-Tl-RZR" id="QPX-FM-iPl"/>
+                        <segue destination="uCZ-zz-2bG" kind="show" identifier="goToUserUnsplash" id="46b-n7-ZTH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gaR-Jf-yIS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1975" y="-288"/>
+            <point key="canvasLocation" x="1973.913043478261" y="-288.61607142857139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2LF-KF-yPZ">
@@ -292,6 +310,9 @@
             <point key="canvasLocation" x="137.68115942028987" y="76.339285714285708"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="zsp-em-pMO"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="person.2.fill" catalog="system" width="128" height="80"/>
         <image name="photo.on.rectangle.angled" catalog="system" width="128" height="101"/>

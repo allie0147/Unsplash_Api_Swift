@@ -10,7 +10,8 @@ import Foundation
 enum SEGUE_ID {
     static let USER_LIST_VC = "goToUserList"
     static let PHOTO_COLLECTION_VC = "goToPhotoCollection"
-    static let WEB_KIT_VC = "goToUnsplash"
+    static let WEB_KIT_VC_PHOTO = "goToPhotoUnsplash"
+    static let WEB_KIT_VC_USER = "goToUserUnsplash"
 }
 
 enum API {
