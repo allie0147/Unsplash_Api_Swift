@@ -94,6 +94,7 @@ class HomeViewController: BaseViewController, UISearchBarDelegate, UIGestureReco
         // ui 설정
         self.searchButton.layer.cornerRadius = 10
         self.searchBar.searchBarStyle = .minimal
+        self.searchBar.returnKeyType = .search
         // delegate 설정
         self.searchBar.delegate = self
         self.keyboardDismissTapGesture.delegate = self
